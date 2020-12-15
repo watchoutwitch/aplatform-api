@@ -41,7 +41,7 @@ if (isset($data->username) && isset($data->password)) {
                     'username' => $row['username'],
                     'password' => $row['password'],
                 ];
-                // Push movies_data ke movies_array
+                // Push users_data ke users
                 array_push($users, $users_data);
             }
         } else {

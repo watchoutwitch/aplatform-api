@@ -35,6 +35,7 @@ if (isset($user_id)) {
         // Fetch data dari Database
         $row = $get_stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Query SQL Update
         $update_query = "UPDATE `users` SET password = :password WHERE id = :id";
 
         $update_stmt = $conn->prepare($update_query);
@@ -44,7 +45,24 @@ if (isset($user_id)) {
         $update_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
 
         if ($update_stmt->execute()) {
-            $users = ['message' => 'Berhasil Mengupdate User!'];
+
+            // Query SQL Select
+            $show_query = "SELECT * FROM `users` WHERE id = :id";
+            $show_stmt = $conn->prepare($show_query);
+
+            // Binding Data
+            $show_stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+            $show_stmt->execute();
+
+            while ($row = $show_stmt->fetch(PDO::FETCH_ASSOC)) {
+                $users_data = [
+                    'id' => $row['id'],
+                    'username' => $row['username'],
+                    'password' => $row['password'],
+                ];
+                // Push users_data ke users
+                $users = ['users' => $users_data];
+            }
         } else {
             $users = ['message' => 'Gagal Mengupdate User!'];
         }

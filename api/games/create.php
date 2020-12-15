@@ -20,8 +20,8 @@ $games = [];
 // Pengecekan Data dari Request
 if (isset($data->name) && isset($data->genre) && isset($data->singlePlayer) && isset($data->multiplayer) && isset($data->platform) && isset($data->release) && isset($data->image_url)) {
 
-    // Pengecekan Data yang Kosong
-    if (!empty($data->name) && !empty($data->genre) && !empty($data->singlePlayer) && !empty($data->multiplayer) && !empty($data->platform) && !empty($data->release) && !empty($data->image_url)) {
+    // Pengecekan Data yang Kosong (Except Column single Player & multiplayer)
+    if (!empty($data->name) && !empty($data->genre) && !empty($data->platform) && !empty($data->release) && !empty($data->image_url)) {
 
         $insert_query = "INSERT INTO `games`(`name`,`genre`,`singlePlayer`,`multiplayer`,`platform`,`release`,`image_url`) VALUES(:name,:genre,:singlePlayer,:multiplayer,:platform,:release,:image_url)";
 

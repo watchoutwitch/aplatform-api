@@ -49,7 +49,7 @@ if (isset($game_id)) {
 
         $update_stmt = $conn->prepare($update_query);
 
-        // Binding Data & Menghilangkan Spesial Chars
+        // Binding Data
         $update_stmt->bindValue(':name', $game_name, PDO::PARAM_STR);
         $update_stmt->bindValue(':genre', $game_genre, PDO::PARAM_STR);
         $update_stmt->bindValue(':singlePlayer', $game_singlePlayer, PDO::PARAM_STR);
